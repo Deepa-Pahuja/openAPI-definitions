@@ -1,0 +1,38 @@
+swagger: '2.0'
+info:
+  description: |
+    This is a sample microservice which returns a greeting to the user.
+  version: 1.0.0
+  title: Swagger Sample Microservice
+# host: petstore.swagger.io
+# basePath: /v2
+tags:
+- name: Sample Microservice
+  description: This returns a hello Greeting message to the user.
+# schemes:
+# - http
+paths:
+  /{city}:
+    post:
+      tags:
+      - greeting
+      summary: Return greeting to the user
+      description: Returns a string
+      operationId: getGreeting
+      produces:
+      - application/json
+      parameters:
+      - name: city
+        in: path
+        description: city of user
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /Personal3192/helloGreeting/1.0.0
+schemes:
+ - https
+ - http
