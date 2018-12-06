@@ -33,9 +33,7 @@ paths:
         200:
           description: Successfully Found Resources with the Skill
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/People'
+            $ref: '#/definitions/People'
         400:
           description: Invalid skill value
 definitions:
