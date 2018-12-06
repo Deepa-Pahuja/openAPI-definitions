@@ -1,9 +1,9 @@
 swagger: '2.0'
 info:
   description: |
-    This is a simple Project microservice.
+    This is a simple Projects microservice.
   version: 1.0.0
-  title: swagger Project
+  title: swagger Projects
 # host: petstore.swagger.io
 # basePath: /v2
 tags:
@@ -12,7 +12,23 @@ tags:
 # schemes:
 # - http
 paths:
-  /project:
+  /projects:
+    get:
+      tags:
+      - project
+      summary: Get all available projects
+      description: Returns projects as a list
+      operationId: getProjects
+      produces:
+      - application/json
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Projects'
+        404:
+          description: Projects not found
+
     post:
       tags:
       - project
@@ -25,17 +41,19 @@ paths:
       parameters:
       - in: body
         name: body
-        description: project object that needs to be added
+        description: Project string that needs to be added
         required: true
         schema:
-          $ref: '#/definitions/Project'
+          type: string
       responses:
+        200:
+          description: Project successfully created
         405:
           description: Invalid input
     put:
       tags:
       - project
-      summary: Update an existing project
+      summary: Update an existing Project
       operationId: updateProject
       consumes:
       - application/json
@@ -44,30 +62,32 @@ paths:
       parameters:
       - in: body
         name: body
-        description: Project object that needs to be added
+        description: Project object that needs to be updated
         required: true
         schema:
           $ref: '#/definitions/Project'
       responses:
+        200:
+          description: Project successfully updated
         400:
           description: Invalid ID supplied
         404:
           description: Project not found
         405:
           description: Validation exception
-  /project/{projectId}:
+  /projects/{projectId}:
     get:
       tags:
       - project
       summary: Find project by ID
-      description: Returns a single project
+      description: Returns a single Project
       operationId: getProjectById
       produces:
       - application/json
       parameters:
       - name: projectId
         in: path
-        description: ID of project to return
+        description: ID of Project to return
         required: true
         type: integer
         format: int64
@@ -79,7 +99,7 @@ paths:
         400:
           description: Invalid ID supplied
         404:
-          description: Project not found
+          description: Tag not found
     delete:
       tags:
       - project
@@ -96,6 +116,8 @@ paths:
         type: integer
         format: int64
       responses:
+        200:
+          description: successful operation
         400:
           description: Invalid ID supplied
         404:
@@ -110,10 +132,20 @@ definitions:
         format: int64
       name:
         type: string
+  Projects:
+    type: array
+    items:
+      type: string
+
+
 
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
-basePath: /Personal3192/Projects/1.0.0
+# basePath: /Personal3192/Projects/1.0.0
 schemes:
  - https
  - http
+# Added by API Auto Mocking Plugin
+# basePath: /ozgurakan/test/1.0.0
+# Added by API Auto Mocking Plugin
+basePath: /Personal3192/Projects/1.0.0
