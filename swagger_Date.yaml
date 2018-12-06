@@ -1,0 +1,132 @@
+swagger: '2.0'
+info:
+  description: |
+    This is a sample Date micro service.
+  version: 1.0.0
+  title: Swagger Date
+# host: petstore.swagger.io
+# basePath: /v2
+tags:
+- name: date
+  description: Everything about your Dates
+# schemes:
+# - http
+paths:
+  /date:
+    post:
+      tags:
+      - date
+      summary: Add a new date to the store
+      operationId: addDate
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Date object that needs to be added
+        required: true
+        schema:
+          $ref: '#/definitions/Date'
+      responses:
+        405:
+          description: Invalid input
+    put:
+      tags:
+      - date
+      summary: Update an existing Date
+      operationId: updateDate
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Date object that needs to be added
+        required: true
+        schema:
+          $ref: '#/definitions/Date'
+      responses:
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Date not found
+        405:
+          description: Validation exception
+  /date/findDates:
+    get:
+      tags:
+      - date
+      summary: Finds next 10 Dates
+      description: This method should return the next 10 working dates after today.
+      operationId: findDates
+      produces:
+      - application/json
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Date'
+  /date/{dateId}:
+    get:
+      tags:
+      - date
+      summary: Find date by ID
+      description: Returns a single Date
+      operationId: getDateById
+      produces:
+      - application/json
+      parameters:
+      - name: dateId
+        in: path
+        description: ID of date to return
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Date'
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Date not found
+    delete:
+      tags:
+      - date
+      summary: Deletes a date
+      operationId: deleteDate
+      produces:
+      - application/json
+      parameters:
+      - name: dateId
+        in: path
+        description: Date id to delete
+        required: true
+        type: integer
+        format: int64
+      responses:
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Date not found
+definitions:
+  Date:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /Personal3192/Date/1.0.0
+schemes:
+ - https
+ - http
