@@ -1,0 +1,46 @@
+swagger: '2.0'
+info:
+  description: |
+    This is a simple Availability microservice.
+  version: 1.0.0
+  title: Swagger Availability
+# host: petstore.swagger.io
+# basePath: /v2
+tags:
+- name: availability
+  description: Everything about your Availability
+# schemes:
+# - http
+paths:
+  /availability:
+    get:
+      tags:
+      - availability
+      summary: Finds people by availability
+      description: return a list of resources.
+      operationId: getAvailablePeople
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Successfully Found Available People
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/People'
+definitions:
+  People:
+    type: array
+    items:
+      type: string
+
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+# basePath: /Personal3192/Availability/1.0.0
+schemes:
+ - https
+ - http
+# Added by API Auto Mocking Plugin
+basePath: /Personal3192/Availability/1.0.0
