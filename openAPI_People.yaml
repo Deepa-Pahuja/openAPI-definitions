@@ -1,0 +1,55 @@
+swagger: '2.0'
+info:
+  description: |
+    This is a simple People micro service.
+  version: 1.0.0
+  title: Swagger People
+# host: petstore.swagger.io
+# basePath: /v2
+tags:
+- name: people
+  description: Everything about your People
+# schemes:
+# - http
+paths:
+  /people:
+    get:
+      tags:
+      - people
+      summary: Finds names with skills
+      description: return a list of people with skills
+      operationId: getNamesWithSkills
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Successfully Found Names with skills
+          schema:
+            $ref: '#/definitions/PeopleWithSkillsList'
+definitions:
+  PeopleWithSkillsList:
+    type: array
+    items:
+      $ref: '#/definitions/PeopleWithSkills'
+
+  PeopleWithSkills:
+    type: object
+    properties:
+      name:
+         type: string
+      skills:
+         type: array
+         items:
+           type: string
+
+
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+# basePath: /Personal3192/Availability/1.0.0
+schemes:
+ - https
+ - http
+# Added by API Auto Mocking Plugin
+basePath: /Personal3192/People/1.0.0
