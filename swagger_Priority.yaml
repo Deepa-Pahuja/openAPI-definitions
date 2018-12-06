@@ -1,9 +1,9 @@
 swagger: '2.0'
 info:
   description: |
-    This is a simple Priority microservice.
+    This is a simple Priorities microservice.
   version: 1.0.0
-  title: swagger Priority
+  title: swagger Priorities
 # host: petstore.swagger.io
 # basePath: /v2
 tags:
@@ -12,7 +12,23 @@ tags:
 # schemes:
 # - http
 paths:
-  /priority:
+  /priorities:
+    get:
+      tags:
+      - priority
+      summary: Get all available priorities
+      description: Returns priorities as a list
+      operationId: getPriorities
+      produces:
+      - application/json
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Priorities'
+        404:
+          description: Priorities not found
+
     post:
       tags:
       - priority
@@ -25,17 +41,19 @@ paths:
       parameters:
       - in: body
         name: body
-        description: priority object that needs to be added
+        description: Priority string that needs to be added
         required: true
         schema:
-          $ref: '#/definitions/Priority'
+          type: string
       responses:
+        200:
+          description: Priority successfully created
         405:
           description: Invalid input
     put:
       tags:
       - priority
-      summary: Update an existing priority
+      summary: Update an existing Priority
       operationId: updatePriority
       consumes:
       - application/json
@@ -44,30 +62,32 @@ paths:
       parameters:
       - in: body
         name: body
-        description: Priority object that needs to be added
+        description: Priority object that needs to be updated
         required: true
         schema:
           $ref: '#/definitions/Priority'
       responses:
+        200:
+          description: Priority successfully updated
         400:
           description: Invalid ID supplied
         404:
           description: Priority not found
         405:
           description: Validation exception
-  /priority/{priorityId}:
+  /priorities/{priorityId}:
     get:
       tags:
       - priority
       summary: Find priority by ID
-      description: Returns a single priority
+      description: Returns a single Priority
       operationId: getPriorityById
       produces:
       - application/json
       parameters:
       - name: priorityId
         in: path
-        description: ID of priority to return
+        description: ID of Priority to return
         required: true
         type: integer
         format: int64
@@ -79,7 +99,7 @@ paths:
         400:
           description: Invalid ID supplied
         404:
-          description: Priority not found
+          description: Tag not found
     delete:
       tags:
       - priority
@@ -96,6 +116,8 @@ paths:
         type: integer
         format: int64
       responses:
+        200:
+          description: successful operation
         400:
           description: Invalid ID supplied
         404:
@@ -110,10 +132,20 @@ definitions:
         format: int64
       name:
         type: string
+  Priorities:
+    type: array
+    items:
+      type: string
+
+
 
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
-basePath: /Personal3192/Priorities/1.0.0
+# basePath: /Personal3192/Priorities/1.0.0
 schemes:
  - https
  - http
+# Added by API Auto Mocking Plugin
+# basePath: /ozgurakan/test/1.0.0
+# Added by API Auto Mocking Plugin
+basePath: /Personal3192/Priorities/1.0.0
