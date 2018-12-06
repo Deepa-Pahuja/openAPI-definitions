@@ -1,0 +1,52 @@
+swagger: '2.0'
+info:
+  description: |
+    This is a simple Resources microservice.
+  version: 1.0.0
+  title: Swagger Resources
+# host: petstore.swagger.io
+# basePath: /v2
+tags:
+- name: resources
+  description: Everything about your Resources
+# schemes:
+# - http
+paths:
+  /resources:
+    get:
+      tags:
+      - resources
+      summary: Finds resources by skill
+      description: A skill will be provided to return a list of resources.
+      operationId: getResourcesBySkill
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: status
+        in: query
+        description: Skill value that needs to be considered for filtering People who are available
+        required: true
+        type: string
+      responses:
+        200:
+          description: Successfully Found Resources with the Skill
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/People'
+        400:
+          description: Invalid skill value
+definitions:
+  People:
+    type: array
+    items:
+      type: string
+
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /Personal3192/People/1.0.0
+schemes:
+ - https
+ - http
