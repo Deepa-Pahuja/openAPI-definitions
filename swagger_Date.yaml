@@ -1,22 +1,38 @@
 swagger: '2.0'
 info:
   description: |
-    This is a sample Date micro service.
+    This is a simple Date microservice.
   version: 1.0.0
-  title: Swagger Date
+  title: swagger Date
 # host: petstore.swagger.io
 # basePath: /v2
 tags:
-- name: date
-  description: Everything about your Dates
+- name: Date
+  description: Everything about your Date
 # schemes:
 # - http
 paths:
   /date:
+    get:
+      tags:
+      - Date
+      summary: Get the next 10 working dates
+      description: Returns next 10 Dates from today as a list
+      operationId: getDates
+      produces:
+      - application/json
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Dates'
+        404:
+          description: Date not found
+
     post:
       tags:
-      - date
-      summary: Add a new date to the store
+      - Date
+      summary: Add a new Date
       operationId: addDate
       consumes:
       - application/json
@@ -25,16 +41,18 @@ paths:
       parameters:
       - in: body
         name: body
-        description: Date object that needs to be added
+        description: Date string that needs to be added
         required: true
         schema:
-          $ref: '#/definitions/Date'
+          type: string
       responses:
+        200:
+          description: Date successfully created
         405:
           description: Invalid input
     put:
       tags:
-      - date
+      - Date
       summary: Update an existing Date
       operationId: updateDate
       consumes:
@@ -44,38 +62,24 @@ paths:
       parameters:
       - in: body
         name: body
-        description: Date object that needs to be added
+        description: Date object that needs to be updated
         required: true
         schema:
           $ref: '#/definitions/Date'
       responses:
+        200:
+          description: Date successfully updated
         400:
           description: Invalid ID supplied
         404:
           description: Date not found
         405:
           description: Validation exception
-  /date/findDates:
-    get:
-      tags:
-      - date
-      summary: Finds next 10 Dates
-      description: This method should return the next 10 working dates after today.
-      operationId: findDates
-      produces:
-      - application/json
-      responses:
-        200:
-          description: successful operation
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Date'
   /date/{dateId}:
     get:
       tags:
-      - date
-      summary: Find date by ID
+      - Date
+      summary: Find Date by ID
       description: Returns a single Date
       operationId: getDateById
       produces:
@@ -83,7 +87,7 @@ paths:
       parameters:
       - name: dateId
         in: path
-        description: ID of date to return
+        description: ID of Date to return
         required: true
         type: integer
         format: int64
@@ -95,14 +99,15 @@ paths:
         400:
           description: Invalid ID supplied
         404:
-          description: Date not found
+          description: Tag not found
     delete:
       tags:
-      - date
-      summary: Deletes a date
+      - Date
+      summary: Deletes a Date
       operationId: deleteDate
       produces:
       - application/json
+      - application/xml
       parameters:
       - name: dateId
         in: path
@@ -111,10 +116,13 @@ paths:
         type: integer
         format: int64
       responses:
+        200:
+          description: successful operation
         400:
           description: Invalid ID supplied
         404:
           description: Date not found
+
 definitions:
   Date:
     type: object
@@ -124,9 +132,20 @@ definitions:
         format: int64
       name:
         type: string
+  Dates:
+    type: array
+    items:
+      type: string
+
+
+
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
-basePath: /Personal3192/Date/1.0.0
+# basePath: /Personal3192/Date/1.0.0
 schemes:
  - https
  - http
+# Added by API Auto Mocking Plugin
+# basePath: /ozgurakan/test/1.0.0
+# Added by API Auto Mocking Plugin
+basePath: /Personal3192/Date/1.0.0
