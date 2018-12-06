@@ -27,8 +27,6 @@ paths:
         200:
           description: Successfully Found Available People
           schema:
-            type: array
-            items:
               $ref: '#/definitions/People'
 definitions:
   People:
