@@ -27,8 +27,8 @@ paths:
           schema:
             $ref: '#/definitions/Tags'
         404:
-          description: Tags not found          
-  
+          description: Tags not found
+
     post:
       tags:
       - tag
@@ -62,7 +62,7 @@ paths:
       parameters:
       - in: body
         name: body
-        description: Tag object that needs to be added
+        description: Tag object that needs to be updated
         required: true
         schema:
           $ref: '#/definitions/Tag'
@@ -136,8 +136,8 @@ definitions:
     type: array
     items:
       type: string
-      
-      
+
+
 
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
