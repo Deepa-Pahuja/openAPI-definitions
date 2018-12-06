@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: |
-    This is a simple Tag microservice.
+    This is a simple Tags microservice.
   version: 1.0.0
   title: swagger Tag
 # host: petstore.swagger.io
