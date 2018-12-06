@@ -24,7 +24,7 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: status
+      - name: skill
         in: query
         description: Skill value that needs to be considered for filtering People who are available
         required: true
